@@ -1,0 +1,23 @@
+.full-width {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  form {
+    min-width: 300px;
+  }
+  
+  mat-dialog-content {
+    padding-top: 10px;
+  }
+  
+  .spinner-button {
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  
+  .error-snackbar {
+    background-color: #f44336;
+    color: white;
+  }

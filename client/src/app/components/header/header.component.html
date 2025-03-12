@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+  <span class="logo">User Feedback</span>
+  <span class="spacer"></span>
+
+  <ng-container *ngIf="isLoggedIn; else loginTemplate">
+    <button mat-flat-button color="accent">Give Feedback</button>
+    <button mat-flat-button color="warn" (click)="logout()">Logout</button>
+  </ng-container>
+
+  <ng-template #loginTemplate>
+    <button mat-flat-button color="accent" (click)="openLoginDialog()">Login</button>
+  </ng-template>
+</mat-toolbar>

@@ -1,0 +1,24 @@
+<div class="feedback-container">
+  <h2>Submit Your Feedback</h2>
+  <form [formGroup]="feedbackForm" (ngSubmit)="submitFeedback()">
+    
+    <!-- Feedback Input -->
+    <mat-form-field appearance="outline">
+      <mat-label>Your Feedback</mat-label>
+      <textarea matInput formControlName="feedback" rows="4"></textarea>
+    </mat-form-field>
+
+    <!-- Rating Selection -->
+    <mat-form-field appearance="outline">
+      <mat-label>Rating (1-5)</mat-label>
+      <select matNativeControl formControlName="rating">
+        <option *ngFor="let r of [1, 2, 3, 4, 5]" [value]="r">{{ r }}</option>
+      </select>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-flat-button color="primary" type="submit" [disabled]="feedbackForm.invalid">Submit</button>
+      <button mat-flat-button color="warn" (click)="closeDialog()">Cancel</button>
+    </div>
+  </form>
+</div>

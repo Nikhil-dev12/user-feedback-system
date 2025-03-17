@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { FeedbackFormComponent } from '../feedback-form/feedback-form.component';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +20,7 @@ export class HeaderComponent {
 
   openLoginDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
-      width: '400px',
+      width: '400px', 
       disableClose: true
     });
 
@@ -31,4 +32,15 @@ export class HeaderComponent {
   logout(): void {
     this.authService.logout();
   }
+  openFeedbackDialog() {
+    const dialogRef = this.dialog.open(FeedbackFormComponent, {
+      width: '440px',
+      disableClose: false
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The feedback dialog was closed');
+    });
+  }
+  
 }

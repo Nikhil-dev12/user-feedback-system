@@ -72,7 +72,6 @@ export class LoginComponent implements OnInit{
             duration: 3000
           });
           this.dialogRef.close(response.user);
-          this.navigationService.navigateToDashboard();
         },
         error: (error) => {
           let errorMessage = 'Invalid credentials';
@@ -118,43 +117,4 @@ export class LoginComponent implements OnInit{
     });
   }
   
-  
-  // register(): void {
-  //   if (this.registerForm.invalid) {
-  //     this.registerForm.markAllAsTouched();
-  //     return;
-  //   }
-
-  //   const { username, password } = this.registerForm.value;
-  //   this.isSubmitting = true;
-    
-  //   this.authService.signup(username, password)
-  //     .pipe(
-  //       finalize(() => this.isSubmitting = false)
-  //     )
-  //     .subscribe({
-  //       next: (response) => {
-  //         this.snackBar.open('Registration successful', 'Close', {
-  //           duration: 3000
-  //         });
-  //         this.dialogRef.close(response.user);
-  //         this.navigationService.navigateToDashboard();
-  //       },
-  //       error: (error) => {
-  //         let errorMessage = 'Registration failed';
-  //         if (error.status === 409) {
-  //           errorMessage = 'Username already exists';
-  //         } else if (error.status === 400) {
-  //           errorMessage = 'Invalid information provided';
-  //         } else if (error.status === 500) {
-  //           errorMessage = 'Server error, please try again later';
-  //         }
-          
-  //         this.snackBar.open(errorMessage, 'Close', {
-  //           duration: 5000,
-  //           panelClass: ['error-snackbar']
-  //         });
-  //       }
-  //     });
-  // }
 }

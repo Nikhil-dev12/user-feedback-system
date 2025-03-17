@@ -1,35 +1,40 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/login/login.component';
+import { FeedbackFormComponent } from './components/feedback-form/feedback-form.component';
+import { FeedbackListComponent } from './components/feedback-list/feedback-list.component';
+
+// ✅ Import Angular Material Modules
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './components/login/login.component';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { HeaderComponent } from './components/header/header.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { FeedbackListComponent } from './components/feedback-list/feedback-list.component';
 import { MatCardModule } from '@angular/material/card';
 
+// ✅ Import Forms and HTTP Modules
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     HeaderComponent,
+    LoginComponent,
+    FeedbackFormComponent,
     FeedbackListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatDialogModule,
+    MatDialogModule, // ✅ Ensures MatDialog is available
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -40,7 +45,7 @@ import { MatCardModule } from '@angular/material/card';
     MatSnackBarModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [], // ✅ DO NOT manually provide MatDialogConfig
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { NavigationService } from './navigation.service';
@@ -18,7 +18,7 @@ export interface AuthResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8090/api/user';
+  private apiUrl = 'http://localhost:8090/api/';
   private tokenKey = 'auth_token';
   private userKey = 'auth_user';
   
@@ -36,7 +36,7 @@ export class AuthService {
   // Sign up new user
 
   signup(username: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/signup`, { username, password },{ headers: { 'Content-Type': 'application/json' }}).pipe(
+    return this.http.post<AuthResponse>(`${this.apiUrl}user/signup`, { username, password },{ headers: { 'Content-Type': 'application/json' }}).pipe(
       tap(response => {
         this.handleAuthentication(response);
       }),
@@ -46,14 +46,47 @@ export class AuthService {
 
   // Login existing user
   login(username: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/login`, { username, password }).pipe(
+    return this.http.post<AuthResponse>(`${this.apiUrl}user/login`, { username, password }).pipe(
       tap(response => {
-        this.handleAuthentication(response);
-        this.navigationService.navigateToDashboard(); // Redirect after successful login
+        this.handleAuthentication(response); 
       }),
       catchError(this.handleError)
     );
   }
+
+  submitFeedback(feedback: string, rating: number) {
+    const url = 'http://localhost:8090/api/feedback/auth/submit';
+    const token = this.getToken();
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    const body = {
+      feedbackText: feedback, rating,
+      ResponseType: 'text'
+    }
+
+    return this.http.post(url, body, { headers });
+   
+  }
+  // submitFeedback(feedback: string, rating: number): Observable<any> {
+  //   const url = 'http://localhost:8090/api/feedback/auth/submit'; // Update with your API endpoint
+  //   const token = this.getToken(); // Ensure this method retrieves the JWT token
+  
+  //   const headers = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Authorization': `Bearer ${token}`
+  //   });
+  
+  //   const body = {
+  //     feedbackText: feedback,  // Ensure this matches the expected backend key
+  //     rating: rating.toString() // Ensure rating is sent as a string if required
+  //   };
+  
+  //   return this.http.post(url, body, { headers });
+  // }
 
   // Logout user
   logout(): void {

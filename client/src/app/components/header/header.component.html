@@ -3,7 +3,7 @@
   <span class="spacer"></span>
 
   <ng-container *ngIf="isLoggedIn; else loginTemplate">
-    <button mat-flat-button color="accent">Give Feedback</button>
+    <button class="button-feedback" mat-flat-button color="accent" (click)="openFeedbackDialog()">Give Feedback</button>
     <button mat-flat-button color="warn" (click)="logout()">Logout</button>
   </ng-container>
 

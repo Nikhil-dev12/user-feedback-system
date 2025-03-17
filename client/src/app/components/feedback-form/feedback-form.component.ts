@@ -12,6 +12,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class FeedbackFormComponent {
   private apiUrl: string = 'http://localhost:8090/api/feedback/auth/submit';
   feedbackForm: FormGroup;
+  feedbackText: string = '';
+  currentDate: Date = new Date();
 
   constructor(
     private fb: FormBuilder,
@@ -23,10 +25,16 @@ export class FeedbackFormComponent {
       feedback: ['', [Validators.required, Validators.minLength(5)]],
       rating: [5, [Validators.required, Validators.min(1), Validators.max(5)]]
     });
+
+    setInterval(() => {
+      this.currentDate = new Date();
+    }, 1000);
   }
   submitFeedback() {
     if (this.feedbackForm.valid) {
       const {feedback, rating} = this.feedbackForm.value;
+      console.log('Feedback Submitted:', this.feedbackText);
+      console.log('Submitted on:', this.currentDate);
 
       this.authService.submitFeedback(feedback,rating).subscribe({
         next:()=> {

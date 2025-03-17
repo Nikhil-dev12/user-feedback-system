@@ -17,6 +17,7 @@
     </mat-form-field>
 
     <div class="button-container">
+      {{ currentDate | date:'MMMM d, y - HHmm' }}hrs
       <button mat-flat-button color="primary" type="submit" [disabled]="feedbackForm.invalid">Submit</button>
       <button mat-flat-button color="warn" (click)="closeDialog()">Cancel</button>
     </div>

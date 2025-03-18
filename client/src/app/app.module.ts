@@ -8,7 +8,6 @@ import { LoginComponent } from './components/login/login.component';
 import { FeedbackFormComponent } from './components/feedback-form/feedback-form.component';
 import { FeedbackListComponent } from './components/feedback-list/feedback-list.component';
 
-// ✅ Import Angular Material Modules
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -18,9 +17,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 
-// ✅ Import Forms and HTTP Modules
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CapitalizeNamePipePipe } from './customs/capitalize-name-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -28,13 +27,15 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     LoginComponent,
     FeedbackFormComponent,
-    FeedbackListComponent
+    FeedbackListComponent,
+    CapitalizeNamePipePipe
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatDialogModule, // ✅ Ensures MatDialog is available
+    MatDialogModule, 
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -45,7 +46,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSnackBarModule,
     MatCardModule
   ],
-  providers: [], // ✅ DO NOT manually provide MatDialogConfig
+  providers: [], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,8 +1,8 @@
 <div class="feedback-container">
     <mat-card *ngFor="let feedback of feedbackList" class="feedback-card">
       <mat-card-header>
-        <mat-card-title>{{ feedback.username }}</mat-card-title>
-        <mat-card-subtitle>{{ feedback.date }}</mat-card-subtitle>
+        <mat-card-title>{{ feedback.username | capitalizeName }}</mat-card-title>
+        <mat-card-subtitle>{{ feedback.date | date:'longDate'}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <p *ngIf="feedback.feedbackText; else noFeedback">{{ feedback.feedbackText }}</p>
